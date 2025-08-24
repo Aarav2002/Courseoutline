@@ -138,20 +138,29 @@ body {
   transition: transform 0.2s ease;
 }
 
+.dropdown-container-wrapper {
+  position: relative;
+  z-index: 100000 !important;
+}
+
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
+  position: fixed;
+  top: auto;
+  right: auto;
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   width: 220px;
-  z-index: 1000;
+  z-index: 999999 !important;
   margin-top: 8px;
   overflow: hidden;
   padding: 8px 0;
   border: 1px solid #e2e8f0;
   animation: dropdownFadeIn 0.2s ease;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: auto;
+  isolation: isolate;
 }
 
 @keyframes dropdownFadeIn {
@@ -473,7 +482,9 @@ body {
               background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
               border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, background-color, border-color;
+  /* will-change: transform, background-color, border-color; */
+  position: relative;   /* Required for z-index to take effect */
+  z-index: -20;  
 }
 
 .module-card {
@@ -604,12 +615,12 @@ body {
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   width: 180px;
-  z-index: 3000;
+  min-width: 180px;
+  z-index: 9999;        /* Higher than .module-item */
   margin-top: 8px;
   overflow: hidden;
   border: 1px solid #e2e8f0;
   animation: fadeIn 0.2s ease;
-  min-width: 180px;
 }
 
 @keyframes fadeIn {
@@ -863,19 +874,19 @@ body {
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   padding: 16px;
-  position: relative;
-  cursor: default;
-  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+  position: relative;   /* Keep this for menu positioning */
+  cursor: default;    
+  /* transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
               background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
               border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, background-color, border-color;
+  will-change: transform, background-color, border-color; */
 }
 
 .module-item:hover {
   background-color: #f8fafc;
   border-color: #cbd5e0;
-  transform: translateY(-1px);
+  /* transform: translateY(-1px); */
 }
 
 .module-item.dragging {
@@ -1093,6 +1104,7 @@ body {
   align-items: center;
   gap: 20px;
   padding: 40px 0;
+  z-index: -1000;
 }
 
 .empty-module-message {
@@ -1100,6 +1112,8 @@ body {
   text-align: center;
   font-size: 14px;
   font-style: italic;
+  z-index: -1000;
+
 }
 
 /* Add item button */
@@ -1562,7 +1576,7 @@ body {
 }
 
 /* Enhanced hover effects */
-.module-item:hover .download-btn {
+.download-btn {
   opacity: 1;
 }
 
