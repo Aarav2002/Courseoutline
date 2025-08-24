@@ -26,9 +26,9 @@ A modern React application for creating and managing course outlines with an int
 
 ### Installation & Setup
 
-1. **Clone the repository**
+1. **Download the project**
    ```bash
-   git clone <repository-url>
+   Download the project
    cd project
    ```
 
