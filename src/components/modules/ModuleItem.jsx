@@ -24,16 +24,7 @@ const ModuleItem = ({ item, onDelete, onEdit, searchTerm, draggedItem, dragOverI
     return item.type || 'unknown';
   })();
   
-  const displayIcon = (() => {
-    if (normalizedType === 'link') {
-      return {
-        type: 'svg',
-        src: '/src/assets/LinkColored.svg',
-        alt: 'Link icon'
-      };
-    }
-    return itemIcon; 
-  })();
+  const displayIcon = itemIcon;
 
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ 
     id: `item-${item.id}` 
